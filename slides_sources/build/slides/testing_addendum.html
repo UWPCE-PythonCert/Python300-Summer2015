@@ -1,0 +1,254 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+--><!DOCTYPE html>
+
+
+<html>
+<head>
+  <title>Test Addendum &mdash; System Development with Python</title>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="hieroglyph-title" data-config-title>
+  <meta name="hieroglyph-subtitle" data-config-subtitle>
+  <meta name="hieroglyph-presenter" data-config-presenter>
+
+  
+  <link rel="stylesheet" media="all"
+        href="_static/theme/css/default.css">
+  <link rel="stylesheet" media="all"
+        href="_static/theme/css/hieroglyph.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)"
+        href="_static/theme/css/phone.css">
+
+    
+    <link rel="stylesheet" href="_static/custom.css"
+          type="text/css" />
+    
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+
+    <script data-main="_static/js/slides"
+            src="_static/js/require-1.0.8.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <link rel="top" title="System Development with Python" href="index.html" /> 
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+<!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+<hgroup class="auto-fadein">
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+  <p data-config-presenter><!-- populated from slide_config.json --></p>
+</hgroup>
+</slide>
+
+  
+    <slide class="title-slide segue nobackground level-1" id="test-addendum">
+    <hgroup>
+      <h1>Test Addendum</h1>
+    </hgroup>
+    <article class="">
+      <p>The things we forgot to talk about</p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="automate-as-much-as-possible">
+    <hgroup>
+      <h2>Automate As Much As Possible</h2>
+    </hgroup>
+    <article class="">
+      <p class="left">The tooling and analysis that helps you write good code can be cumbersome to manage.  Earlier examples showed us tools such as:</p>
+<p><tt class="docutils literal"><span class="pre">coverage</span></tt> ( detail where you need more tests )</p>
+<p><tt class="docutils literal"><span class="pre">pep8</span></tt> ( for style errors )</p>
+<p><tt class="docutils literal"><span class="pre">pyflakes</span></tt> ( for functional errors )</p>
+<p>Isn't there an easier way to see the interaction of these things with my code?</p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="ide-s-of-course">
+    <hgroup>
+      <h3>IDE(s) of Course</h3>
+    </hgroup>
+    <article class="">
+      <p>Text editors can handle some static analyis, lookups. Most, like <tt class="docutils literal"><span class="pre">Sublime</span></tt>, come with plugins</p>
+<p>A full-blown IDE usually comes with that plus more:</p>
+<blockquote>
+<div><ul class="simple">
+<li>jumping around the codebase faster ( ex. source code )</li>
+<li>debugging</li>
+<li>syntax, style, functional errors</li>
+<li>testing is integrated</li>
+<li>sometimes coverage is too</li>
+</ul>
+</div></blockquote>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="ide-examples">
+    <hgroup>
+      <h3>IDE Examples</h3>
+    </hgroup>
+    <article class="">
+      <p>Common Python IDE(s):</p>
+<blockquote>
+<div><ul class="simple">
+<li>Aptana Studio</li>
+<li>PyDev</li>
+<li>PyCharm</li>
+</ul>
+</div></blockquote>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="pycharm-example-coverage-and-pep8">
+    <hgroup>
+      <h3>PyCharm Example ( Coverage and PEP8 )</h3>
+    </hgroup>
+    <article class="">
+      <p>Remember this wonderful program?</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span> <span class="n">x</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;in branch&quot;</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;+ 1&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;out of branch&quot;</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="decorator-definition">
+    <hgroup>
+      <h3>Decorator definition</h3>
+    </hgroup>
+    <article class="">
+      <p>Python functions can accept functions as arguments and return them:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="k">def</span> <span class="nf">x</span><span class="p">(</span> <span class="n">function_z</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">y</span><span class="p">():</span>
+        <span class="c"># execute the passed fn</span>
+        <span class="n">function_z</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>We also know that Python functions are just objects:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span><span class="k">pass</span>
+
+<span class="gp">In [2]: </span><span class="nb">isinstance</span><span class="p">(</span> <span class="n">foo</span><span class="p">,</span> <span class="nb">object</span> <span class="p">)</span>
+<span class="gh">Out[2]: </span><span class="go">True</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="id1">
+    <hgroup>
+      <h3>Decorator definition</h3>
+    </hgroup>
+    <article class="">
+      <p>What if we wanted to add additional functionality to an object at runtime but without changing the object?</p>
+<p>If we do this type of thing a lot, then we are just following a pattern ( as in Gang-of-Four )</p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="decorator-example-and-demo">
+    <hgroup>
+      <h3>Decorator example and demo</h3>
+    </hgroup>
+    <article class="">
+      <div class="highlight-ipython"><div class="highlight"><pre><span class="k">def</span> <span class="nf">loggly</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="s">&#39;muffle&#39;</span><span class="p">,</span> <span class="bp">False</span> <span class="p">):</span>
+            <span class="k">print</span> <span class="s">&quot;executing &#39;{}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">func</span><span class="o">.</span><span class="n">__name__</span> <span class="p">)</span>
+            <span class="k">print</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">with args: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">args</span> <span class="p">)</span>
+            <span class="k">print</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">with kwargs: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">kwargs</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">logger</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="decorator-excercise">
+    <hgroup>
+      <h3>Decorator Excercise</h3>
+    </hgroup>
+    <article class="">
+      <ol class="arabic simple">
+<li>Write a decorator that times the execution of a function</li>
+</ol>
+
+
+
+
+    </article>
+  </slide>
+
+
+  <slide class="thank-you-slide segue nobackground">
+  <article class="flexbox vleft auto-fadein">
+    <h2>Thank You!</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+</slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

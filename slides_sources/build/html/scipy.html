@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Intro to Numpy / Scipy &mdash; System Development With Python 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="System Development With Python 1.0 documentation" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> System Development With Python</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <!-- Local TOC -->
+            <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Intro to Numpy / Scipy</a><ul>
+<li><a class="reference internal" href="#id1">Scipy</a><ul>
+<li><a class="reference internal" href="#what-s-in-the-scipy-stack">What&#8217;s in the scipy stack?</a></li>
+<li><a class="reference internal" href="#learning-resources">Learning Resources</a></li>
+<li><a class="reference internal" href="#the-ipython-notebook">The ipython &#8220;notebook&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#numpy">numpy</a><ul>
+<li><a class="reference internal" href="#so-what-is-numpy">So what is numpy?</a></li>
+<li><a class="reference internal" href="#why-numpy">Why numpy?</a></li>
+<li><a class="reference internal" href="#this-talk">This Talk</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li><a class="reference internal" href="#array-constructors">Array Constructors:</a></li>
+<li><a class="reference internal" href="#indexing-and-slicing">Indexing and slicing</a></li>
+<li><a class="reference internal" href="#reshaping">Reshaping:</a></li>
+<li><a class="reference internal" href="#broadcasting">Broadcasting:</a></li>
+<li><a class="reference internal" href="#fancy-indexing">Fancy Indexing</a></li>
+<li><a class="reference internal" href="#stride-tricks">Stride Tricks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exercise">Exercise</a></li>
+<li><a class="reference internal" href="#matplotlib">matplotlib</a><ul>
+<li><a class="reference internal" href="#matplotlib-apis">matplotlib APIs</a></li>
+<li><a class="reference internal" href="#tutorial">Tutorial</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pandas">Pandas</a><ul>
+<li><a class="reference internal" href="#learning-pandas">Learning Pandas</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">Scipy</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">System Development With Python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Intro to Numpy / Scipy</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/scipy.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="intro-to-numpy-scipy">
+<span id="scipy"></span><h1>Intro to Numpy / Scipy<a class="headerlink" href="#intro-to-numpy-scipy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>Scipy<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p class="left">The scipy &#8220;Stack&#8221; is a collection of core packages used for scientific / numerical computing.</p>
+<p class="left"><a class="reference external" href="http://www.scipy.org/stackspec.html">http://www.scipy.org/stackspec.html</a></p>
+<p class="left">Many other domain-specific packages area available:</p>
+<blockquote class="left">
+<div>Core &#8220;stack&#8221; is what most people will want, regardless of domain.</div></blockquote>
+<div class="section" id="what-s-in-the-scipy-stack">
+<h3>What&#8217;s in the scipy stack?<a class="headerlink" href="#what-s-in-the-scipy-stack" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Python (<a class="reference external" href="http://www.python.org">http://www.python.org</a>)</li>
+<li>NumPy (<a class="reference external" href="http://www.numpy.org">http://www.numpy.org</a>)</li>
+<li>SciPy library (<a class="reference external" href="http://www.scipy.org">http://www.scipy.org</a>)</li>
+<li>Matplotlib (<a class="reference external" href="http://matplotlib.org/">http://matplotlib.org/</a>)</li>
+<li>IPython (<a class="reference external" href="http://ipython.org/">http://ipython.org/</a>)</li>
+<li>nose (<a class="reference external" href="https://nose.readthedocs.org">https://nose.readthedocs.org</a>)</li>
+<li>pandas (<a class="reference external" href="http://pandas.pydata.org/">http://pandas.pydata.org/</a>)</li>
+<li>Sympy (<a class="reference external" href="http://sympy.org/">http://sympy.org/</a>)</li>
+</ul>
+</div>
+<div class="section" id="learning-resources">
+<h3>Learning Resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h3>
+<p>There are a lot of noteworthy tutorials and documentation out there. Here are some for you to investigate.</p>
+<p><a class="reference external" href="http://scipy-lectures.github.io/">http://scipy-lectures.github.io/</a></p>
+<p><a class="reference external" href="https://github.com/SciTools/courses/blob/master/README.md">https://github.com/SciTools/courses/blob/master/README.md</a></p>
+<p><a class="reference external" href="https://github.com/jrjohansson/scientific-python-lectures">https://github.com/jrjohansson/scientific-python-lectures</a></p>
+<p><a class="reference external" href="https://github.com/WeatherGod/AnatomyOfMatplotlib">https://github.com/WeatherGod/AnatomyOfMatplotlib</a></p>
+<p><a class="reference external" href="http://wiki.scipy.org/Tentative_NumPy_Tutorial">http://wiki.scipy.org/Tentative_NumPy_Tutorial</a></p>
+<p>For those familiar with MATLAB:</p>
+<p><a class="reference external" href="http://wiki.scipy.org/NumPy_for_Matlab_Users">http://wiki.scipy.org/NumPy_for_Matlab_Users</a></p>
+</div>
+<div class="section" id="the-ipython-notebook">
+<h3>The ipython &#8220;notebook&#8221;<a class="headerlink" href="#the-ipython-notebook" title="Permalink to this headline">¶</a></h3>
+<p>iPython has been used here and there in class. It&#8217;s another interactive console for testing and running
+Python code.</p>
+<p>It has another useful interface: the &#8220;notebook&#8221;</p>
+<p>The notebook provides a way to intersperse chunks of text, code and images</p>
+<p>It runs in a browser, you kick it off with:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ipython notebook
+</pre></div>
+</div>
+<p>It should start your browser and show the notebooks in the directory where you ran the command</p>
+</div>
+</div>
+<div class="section" id="numpy">
+<h2>numpy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
+<p class="left"><cite>numpy</cite> is the core package that entire scipy stack is built on.</p>
+<p class="left">The other tools rest on understanding what a numpy array is &#8211; that&#8217;s mostly what we&#8217;ll talk about here</p>
+<div class="section" id="so-what-is-numpy">
+<h3>So what is numpy?<a class="headerlink" href="#so-what-is-numpy" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s a Python extension module ( <a class="reference external" href="http://www.numpy.org/">docs</a> )</p>
+<ol class="arabic simple">
+<li>An N-Dimensional array object</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Really this <tt class="docutils literal"><span class="pre">ndarray</span></tt> is the core of it all</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>A whole pile of tools for operations on/with that object.</li>
+</ol>
+</div>
+<div class="section" id="why-numpy">
+<h3>Why numpy?<a class="headerlink" href="#why-numpy" title="Permalink to this headline">¶</a></h3>
+<p>Classic answer: Lots of numbers</p>
+<blockquote>
+<div><ul class="simple">
+<li>Faster</li>
+<li>Less memory</li>
+<li>More data types</li>
+</ul>
+</div></blockquote>
+<p>Even if you don&#8217;t have lot of numbers:</p>
+<blockquote>
+<div><ul class="simple">
+<li>N-d array slicing</li>
+<li>Vector operations</li>
+<li>Flexible data types</li>
+</ul>
+</div></blockquote>
+<p>Wrapper for a block of memory:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Interfacing with C libs</li>
+<li>PyOpenGL</li>
+<li>GDAL</li>
+<li>NetCDF4</li>
+<li>Shapely</li>
+</ul>
+</div></blockquote>
+<p>Image processing:</p>
+<blockquote>
+<div><ul class="simple">
+<li>PIL</li>
+<li>WxImage</li>
+<li>ndimage</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="this-talk">
+<h3>This Talk<a class="headerlink" href="#this-talk" title="Permalink to this headline">¶</a></h3>
+<p>There are a lot of tutorials and documentation out there.</p>
+<p>Let&#8217;s spend some time on the &#8220;how to use it&#8221; stuff.</p>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p class="left">Example code is in the class repo:</p>
+<p class="left"><tt class="docutils literal"><span class="pre">SystemDevelopment2015/Examples/week-05-numpy</span></tt></p>
+<p class="left">Those are a bunch of ipython notebooks.</p>
+<p class="left">Get your command line into that dir, then start up the iPyhton notebook:</p>
+<p class="left"><tt class="docutils literal"><span class="pre">$</span> <span class="pre">ipython</span> <span class="pre">notebook</span></tt></p>
+<p class="left">This should fie up your browser, and give you a list of notebooks to choose from.</p>
+<div class="section" id="array-constructors">
+<h3>Array Constructors:<a class="headerlink" href="#array-constructors" title="Permalink to this headline">¶</a></h3>
+<p>How do you make an array?</p>
+<p>From scratch: <tt class="docutils literal"><span class="pre">ones(),</span> <span class="pre">zeros(),</span> <span class="pre">empty(),</span> <span class="pre">arange(),</span> <span class="pre">linspace(),</span> <span class="pre">logspace()</span></tt></p>
+<p>( Default dtype: <tt class="docutils literal"><span class="pre">np.float64</span></tt> )</p>
+<p>From sequences:  <tt class="docutils literal"><span class="pre">array(),</span> <span class="pre">asarray()</span></tt> ( Build from any sequence )</p>
+<p>demo: <tt class="docutils literal"><span class="pre">constructors.ipynb</span></tt></p>
+</div>
+<div class="section" id="indexing-and-slicing">
+<h3>Indexing and slicing<a class="headerlink" href="#indexing-and-slicing" title="Permalink to this headline">¶</a></h3>
+<p>How do you get parts of the array out?</p>
+<p>Indexing and slicing much like regular python sequences, but extended to multi-dimensions.</p>
+<p>However: a slice is a &#8220;view&#8221; on the array &#8211; new object, but shares memory:</p>
+<p>demo: <tt class="docutils literal"><span class="pre">slice.ipynb</span></tt></p>
+</div>
+<div class="section" id="reshaping">
+<h3>Reshaping:<a class="headerlink" href="#reshaping" title="Permalink to this headline">¶</a></h3>
+<p>numpy arrays have a particular shape.</p>
+<p>But they are really wrappers around a block of data</p>
+<p>So they can be re-shaped &#8211; same data, arranged differently</p>
+<p>demo: <tt class="docutils literal"><span class="pre">reshaping.ipynb</span></tt></p>
+</div>
+<div class="section" id="broadcasting">
+<h3>Broadcasting:<a class="headerlink" href="#broadcasting" title="Permalink to this headline">¶</a></h3>
+<p>Element-wise operations among two different rank arrays:</p>
+<p>This is the key power of numpy!</p>
+<p>Simple case: scalar and array:</p>
+<div class="highlight-python"><div class="highlight"><pre>In [37]: a
+Out[37]: array([1, 2, 3])
+In [38]: a*3
+Out[38]: array([3, 6, 9])
+</pre></div>
+</div>
+<p>Great for functions of more than one variable on a grid</p>
+<p>demo: <tt class="docutils literal"><span class="pre">broadcasting.ipynb</span></tt></p>
+</div>
+<div class="section" id="fancy-indexing">
+<h3>Fancy Indexing<a class="headerlink" href="#fancy-indexing" title="Permalink to this headline">¶</a></h3>
+<p>As we&#8217;ve seen, you can slice and dice nd arrays much like regular python sequences.</p>
+<p>This model is extended to multiple dimensions.</p>
+<p>But it still only lets you extract rectangular blocks of elements.</p>
+<p>For more complex sub-selection: we use &#8220;fancy indexing&#8221;:</p>
+<p>demo: <tt class="docutils literal"><span class="pre">fancy_indexing.ipynb</span></tt></p>
+</div>
+<div class="section" id="stride-tricks">
+<h3>Stride Tricks<a class="headerlink" href="#stride-tricks" title="Permalink to this headline">¶</a></h3>
+<p>numpy arrays are really wrappers about &#8220;strided data&#8221;</p>
+<p>This means that there is a single linear block of memory with the
+values in it.</p>
+<p>The &#8220;strides&#8221; describe how that data is arranged to look like an array of more dimensions: 2D, 3D, 4D etc.</p>
+<p>Mostly, numpy handles all this under the hood for you, so you can logically work with the data as though it were multi-dimensional.</p>
+<p>But you can actually manipulate the description of the data, so that it &#8220;acts&#8221; like it is arranged differently than it is:</p>
+<p><tt class="docutils literal"><span class="pre">stride_tricks.ipynb</span></tt></p>
+</div>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p class="left">Open up <cite>/examples/week-05-numpy/images/images.py</cite></p>
+<p class="left"><strong>1.</strong> Write a function that rotates the image 180 degrees ( multiple ways to do this )</p>
+<p class="left"><strong>2.</strong> Write a function that crops the image to some dimension of your choice</p>
+<p class="left"><strong>3.</strong> Create a small test RGB image (see below). Choose an RGB value set to replace. How do we target that selection? ( HINT: np.all ):</p>
+<div class="left highlight-ipython"><div class="highlight"><pre><span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">],</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span> <span class="p">)</span>
+<span class="n">array</span><span class="p">([[[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span>
+        <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span>
+        <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span>
+        <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">]],</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="matplotlib">
+<h2>matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
+<p class="left">Matplotlib is the most common plotting library for python.</p>
+<ul class="left simple">
+<li>Flexible</li>
+<li>Publication quality</li>
+<li>Primarily 2d graphics (some 3d)</li>
+</ul>
+<p class="left">See the Gallery here:</p>
+<p class="left"><a class="reference external" href="http://matplotlib.org/gallery.html">http://matplotlib.org/gallery.html</a></p>
+<div class="section" id="matplotlib-apis">
+<h3>matplotlib APIs<a class="headerlink" href="#matplotlib-apis" title="Permalink to this headline">¶</a></h3>
+<p>Matplotlib has two different (but related) APIs:</p>
+<p><strong>1.</strong> The &#8220;pylab&#8221; API:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Derived from the MATLAB API, and most suitable for interactive use</li>
+</ul>
+</div></blockquote>
+<p><strong>2.</strong> The Object Oriented API:</p>
+<blockquote>
+<div><ul class="simple">
+<li>reflects the underlying OO structure of matplolib</li>
+<li>more &#8220;pythonic&#8221;</li>
+<li>much better suited to embedding plotting in applications</li>
+<li>better suited to re-using code</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="tutorial">
+<h3>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h3>
+<p>Here is a small ipython notebook tutorial to run through:</p>
+<p><tt class="docutils literal"><span class="pre">SystemDevelopment2015/Examples/week-05-matplotlib</span></tt></p>
+<p>There are two notebooks in the directory &#8211; the <strong>learner</strong> and <strong>instructor</strong> notebooks. They are identical. Use the <strong>learner</strong> and keep the <strong>instructor</strong> for backup in case something gets messed up.</p>
+<p><a class="reference external" href="https://github.com/WeatherGod/AnatomyOfMatplotlib">Here</a> is a more thorough tutorial for you to go through when you have more time:</p>
+</div>
+</div>
+<div class="section" id="pandas">
+<h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<p class="left">Python Data Analysis Library</p>
+<p class="left">Pandas provides high-performance, easy-to-use data structures and data analysis tools for the Python programming language.</p>
+<p class="left">Modeled after R&#8217;s dataframe concept, it provides some pretty neat tools for doing simple statistical analysis and plotting of larg-ish data sets.</p>
+<p class="left">It&#8217;s particularly powerful for time series.</p>
+<p class="left"><tt class="docutils literal"><span class="pre">http://pandas.pydata.org/</span></tt></p>
+<div class="section" id="learning-pandas">
+<h3>Learning Pandas<a class="headerlink" href="#learning-pandas" title="Permalink to this headline">¶</a></h3>
+<p>The official documentation is excellent, including tutorials:</p>
+<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/">http://pandas.pydata.org/pandas-docs/stable/</a></p>
+<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/10min.html">http://pandas.pydata.org/pandas-docs/stable/10min.html</a></p>
+<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/tutorials.html">http://pandas.pydata.org/pandas-docs/stable/tutorials.html</a></p>
+<p>In addition, there are a large number of tutorials on the web:</p>
+<p>This one is oriented to folks familiar with SQL:</p>
+<p><a class="reference external" href="http://www.gregreda.com/2013/10/26/intro-to-pandas-data-structures/">http://www.gregreda.com/2013/10/26/intro-to-pandas-data-structures/</a></p>
+<p>And this is a good one to get started quick:</p>
+<p><a class="reference external" href="http://synesthesiam.com/posts/an-introduction-to-pandas.html">http://synesthesiam.com/posts/an-introduction-to-pandas.html</a></p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Scipy<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p class="left">The scipy package itself is a large collection of cool stuff for scientific computing. ( <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/">http://docs.scipy.org/doc/scipy/reference/</a> )</p>
+<p class="left">You&#8217;ll see there lots of stuff! If it&#8217;s at all general purpose for computation, you&#8217;re likely to find it there.</p>
+<p class="left">Some of the most common sub-packages:</p>
+<blockquote class="left">
+<div><ul class="simple">
+<li>Special functions (scipy.special)</li>
+<li>Integration (scipy.integrate)</li>
+<li>Optimization (scipy.optimize)</li>
+<li>Interpolation (scipy.interpolate)</li>
+<li>Fourier Transforms (scipy.fftpack)</li>
+<li>Signal Processing (scipy.signal)</li>
+<li>Linear Algebra (scipy.linalg)</li>
+<li>Spatial data structures and algorithms (scipy.spatial)</li>
+<li>Statistics (scipy.stats)</li>
+<li>Multidimensional image processing (scipy.ndimage)</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Christopher Barker, Joseph Sheedy .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

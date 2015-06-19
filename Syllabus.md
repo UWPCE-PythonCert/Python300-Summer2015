@@ -10,11 +10,11 @@ Greg Corradini ( gregcorradini+uwpce@gmail.com )
 
 Lecture Slides and Code Examples:
 
-    - http://UWPCE-PythonCert.github.io/Python300-Summer2015
+- http://UWPCE-PythonCert.github.io/Python300-Summer2015
 
 Adobe Connect Login: 
 
-    - http://uweoconnect.extn.washington.edu/python300
+- http://uweoconnect.extn.washington.edu/python300
 
 ### Course Objectives
 

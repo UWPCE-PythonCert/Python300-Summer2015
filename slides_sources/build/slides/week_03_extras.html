@@ -1,0 +1,182 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+--><!DOCTYPE html>
+
+
+<html>
+<head>
+  <title>Week 3 Extras &mdash; System Development with Python</title>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="hieroglyph-title" data-config-title>
+  <meta name="hieroglyph-subtitle" data-config-subtitle>
+  <meta name="hieroglyph-presenter" data-config-presenter>
+
+  
+  <link rel="stylesheet" media="all"
+        href="_static/theme/css/default.css">
+  <link rel="stylesheet" media="all"
+        href="_static/theme/css/hieroglyph.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)"
+        href="_static/theme/css/phone.css">
+
+    
+    <link rel="stylesheet" href="_static/custom.css"
+          type="text/css" />
+    
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+
+    <script data-main="_static/js/slides"
+            src="_static/js/require-1.0.8.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <link rel="top" title="System Development with Python" href="index.html" /> 
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+<!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+<hgroup class="auto-fadein">
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+  <p data-config-presenter><!-- populated from slide_config.json --></p>
+</hgroup>
+</slide>
+
+  
+    <slide class="title-slide segue nobackground level-1" id="week-3-extras">
+    <hgroup>
+      <h1>Week 3 Extras</h1>
+    </hgroup>
+    <article class="">
+      <p>A Note About Generators</p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="django-generator-examples">
+    <hgroup>
+      <h2>Django Generator Examples</h2>
+    </hgroup>
+    <article class="">
+      <p class="left">We saw examples of generators being used in the Django project:</p>
+<ol class="left arabic simple">
+<li>Looping over GDAL/OGR <a class="reference external" href="https://github.com/django/django/blob/db77915c9fd35a203edd8206f702ee4082f04d4a/django/contrib/gis/gdal/feature.py#L50-L53">features</a></li>
+<li>Database query <a class="reference external" href="https://github.com/django/django/blob/355c5edd9390caad5725375abca03460805f663b/django/db/models/query.py">functions</a></li>
+</ol>
+<p class="left">Questions:</p>
+<blockquote class="left">
+<div><ul class="simple">
+<li>Did you notice that almost all <cite>__iter__</cite> function end with a <cite>yield</cite>?</li>
+<li>What's the benefit of having <cite>yield</cite> here?</li>
+</ul>
+</div></blockquote>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="generator-review">
+    <hgroup>
+      <h3>Generator Review</h3>
+    </hgroup>
+    <article class="">
+      <p>Last time we saw that the print statement after the <cite>yield</cite> statement executes at an unexpected time</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="k">def</span> <span class="nf">count_to_10</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;executing...&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">i</span>
+        <span class="k">print</span> <span class="s">&quot;continue...&quot;</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="id1">
+    <hgroup>
+      <h3>Generator Review</h3>
+    </hgroup>
+    <article class="">
+      <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [2]: </span><span class="n">citer</span> <span class="o">=</span> <span class="n">count_to_10</span><span class="p">()</span>
+
+<span class="gp">In [3]: </span><span class="n">citer</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">executing...</span>
+<span class="gh">Out[3]: </span><span class="go">0</span>
+
+<span class="gp">In [4]: </span><span class="n">citer</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">continue...</span>
+<span class="gh">Out[4]: </span><span class="go">1</span>
+</pre></div>
+</div>
+<p>We didn't look at the stack frames in <tt class="docutils literal"><span class="pre">pdb</span></tt> for this example.</p>
+<p>Can we expect anything different happening on the stack due to the <tt class="docutils literal"><span class="pre">yield</span></tt> statement ?</p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="id2">
+    <hgroup>
+      <h3>Generator Review</h3>
+    </hgroup>
+    <article class="">
+      <p>Interested in how generators work?</p>
+<p>Look at the teaser in <tt class="docutils literal"><span class="pre">week-03-debugging/generators/generator_as_functions.py</span></tt></p>
+
+
+
+
+    </article>
+  </slide>
+
+
+  <slide class="thank-you-slide segue nobackground">
+  <article class="flexbox vleft auto-fadein">
+    <h2>Thank You!</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+</slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
