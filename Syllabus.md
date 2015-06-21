@@ -111,7 +111,7 @@ July 30th
 - ipython/notebook
 - numpy and scipy
     - matplotlib
-    - panda
+    - pandas
 
 
 ### Week 6
