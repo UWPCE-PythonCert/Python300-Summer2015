@@ -2,9 +2,15 @@ Python 300
 Summer, 2015
 June 25th through September 3rd, Thursdays @ 6:00pm
 
-### Instructor
+### Instructors
 
 Greg Corradini ( gregcorradini+uwpce@gmail.com )
+
+Rick Riehle ( rriehle@uw.edu )
+
+### Office Hours
+
+Sundays ( 9:00am to 11:00am ) online and in person ( place to be decided )
 
 ### Course Materials
 
@@ -68,74 +74,62 @@ Each class will involve a lecture interspersed with in-class exercises about the
 ### Week 1
 June 25th 
 
-#### Topics
+#### Topics ( Greg )
 - class intro
-- packaging
 - unit testing and coverage
     - context managers
     - decorators
-
 
 ### Week 2
 July 9th  
 
 ( Proposals Due )
-#### Topics
+#### Topics ( Rick )
 - Documentation (docstrings, sphinx)
-- Weak references
 - PEP-8 (pylint/pychecker/pyflakes)
 
 
 ### Week 3
 July 16th 
 
-#### Topics
-- Name Mangling Review
+#### Topics ( Greg )
 - Debugging (print, logging, pdb/ipdb, winpdb)
-- Unicode
 
 
 ### Week 4
 July 23rd
 
-#### Topics
+#### Topics ( Rick )
 - Databases (DB-API w/ sqlite, NoSQL)
-- Advanced OO:
-  - super(), \__new__()
-
 
 ### Week 5
 July 30th 
 
-#### Topics
-- ipython/notebook
-- numpy and scipy
-    - matplotlib
-    - panda
-
+#### Topics ( Greg )
+- Advanced OO:
+  - super()
 
 ### Week 6
 August 6th
 
-#### Topics
-- serialization review / XML
-- Advanced OO:
-  - type, metaclasses
-- datetime, time, pytz
+#### Topics ( Rick )
+- functional programming in Python
+    - functools
+    - itertools
 
 ### Week 7
 August 13th
 
-#### Topics
-- multi-threading/processing
-- profiling
-
+#### Topics ( Greg )
+- ipython/notebook
+- packaging
 
 ### Week 8
 August 20th
 
 #### Topics
-- C extensions( C API, ctypes, cython)
+- profiling ( Rick )
+- multi-threading/processing ( Greg )
 
 ### Week 9
 August 27th 
