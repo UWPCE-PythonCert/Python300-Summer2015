@@ -4,4 +4,4 @@ This repository contains the source materials for the third class in the the Uni
 See the [Syllabus](Syllabus.md) for the topics covered.
 
 The slides for class lectures are hosted online:
-[http://UWPCE-PythonCert.github.io/EMC-Python300-Spring2015](http://UWPCE-PythonCert.github.io/EMC-Python300-Spring2015)
+[http://UWPCE-PythonCert.github.io/Python300-Summer2015](http://UWPCE-PythonCert.github.io/Python300-Summer2015)
