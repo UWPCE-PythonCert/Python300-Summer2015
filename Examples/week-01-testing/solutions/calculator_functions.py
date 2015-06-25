@@ -1,13 +1,13 @@
 """calculator functions"""
 
 def add(x, y):
-    return float(x)+float(y)
+    return int(x)+int(y)
 
 def subtract(x, y):
-    return float(x)-float(y)
+    return int(x)-int(y)
 
 def multiply(x, y):
-    return float(x)*float(y)
+    return int(x)*int(y)
 
 def divide(x, y):
     return float(x)/float(y)

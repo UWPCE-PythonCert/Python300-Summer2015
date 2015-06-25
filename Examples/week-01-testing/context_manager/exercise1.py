@@ -1,5 +1,4 @@
 
-
 class YourExceptionHandler(object):
     def __enter__(self):
         pass

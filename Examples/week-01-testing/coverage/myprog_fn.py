@@ -1,4 +1,4 @@
-from sys import *
+import sys
 
 a = 0; b = 1
 
@@ -9,8 +9,6 @@ def foo( x ):
             print "+ 1"
     print "out of branch"
 
-
-
-
-
-
+if __name__ == '__main__':
+    arg = int( sys.argv[1] )
+    foo( arg )

@@ -40,26 +40,25 @@
     <section class="slide">
         <h2>System Development with Python</h2>
         <h3>Week 1 :: unit testing review / coverage</h3>
-        <p>Adapted from Joseph Sheedy's material</p>
     </section>
 
     <section class="slide">
         <h2>What is testing?</h2>
 
-        <p>Code which runs your application in as close to a real environment as feasible and validates its behavior
-        <p>In dynamic interpreted languages like Python even show stopping syntax errors can hide until discovered in runtime, usually at the wrongtime.
+        <p>Code which runs across your application and validates its behavior
+        <ul>
+            <li>The environments should be as similar as possible
+            <li>In interpreted languages like Python syntax errors can hide until runtime
+        </ul>
+<pre><code>#!/usr/bin/env python
+    def func():
+        jfdkls
 
-        <pre><code>
-#!/usr/bin/env python
-
-def func():
-    jfdkls
-
-while True:
-    print "> ",
-    if raw_input() == 'x':
-        func()
-        </code></pre>
+    while True:
+        print "> ",
+        if raw_input() == 'x':
+            func()
+</code></pre>
 </section>
 
 <section class="slide">
@@ -67,8 +66,7 @@ while True:
             <ul>
                 <li>Unit tests
                 <li>Integration tests
-		<li>System Testing
-                <li>Black box / White box testing
+                <li>System Testing ( black box / white box )
             </ul>
     </section>
 
@@ -83,7 +81,7 @@ while True:
         </ul>
         <p>What should be tested?
         <p>The percentage of code which gets run in a test is known as the coverage.
-        <p>100% coverage is an ideal to strive for.  But the decision on when and what to test should take into account the volatility of the project.  Tests require maintenance.
+        <p>100% coverage is an ideal to strive for. Tests require maintenance and time
     </section>
 
     <section class="slide">
@@ -103,13 +101,13 @@ while True:
 
     <section class="slide">
         <h2>unittest.TestCase anatomy</h2>
-        <p>create a new subclass of unittest.TestCase
-        <p>name test methods test_foo so the test runner finds them
-        <p>make calls to the self.assert* family of methods to validate results
-
-        <p>
-    <pre><code>
-import unittest
+        <ul>
+            <li>create a new subclass of unittest.TestCase
+            <li>name test methods starting with 'test_' so they can be discovered
+            <li>make calls to the self.assert* family of methods to validate results
+            <li>see /examples/week-01/unittest_ex/example1.py
+        </ul>
+<pre><code>import unittest
 
 class TestTest(unittest.TestCase):
 
@@ -127,7 +125,17 @@ class TestTest(unittest.TestCase):
 
 
     <section class="slide">
-        <h2>assert methods</h2>
+        <h2>Running your tests</h2>
+        <p>Call unittest.main() right in your module
+<pre><code>if __name__ == "__main__":
+    unittest.main()
+</code></pre>
+    </section>
+
+
+
+    <section class="slide">
+        <h2>Assert methods</h2>
         <p>TestCase contains a number of methods named assert* which can be used for validation, here are a few common ones:
         <ul>
             <li>assertEqual(first, second, msg=None)
@@ -137,17 +145,24 @@ class TestTest(unittest.TestCase):
             <li>assertIn(first, second)
             <li>assertRaises(exc, fun, msg=None, *args, **kwargs)
         </ul>
-        <p>
-            See a full list at
-            <a target="_blank" href="http://docs.python.org/2/library/unittest.html#assert-methods">http://docs.python.org/2/library/unittest.html#assert-methods</a> or dir(unittest.TestCase)
-        </p>
-
     </section>
+
+    
+    <section class="slide">
+        <h2>Exercise:</h2>
+        <p>Modify one test method of /examples/week-01/unittest_ex/example1.py:
+        <ol>
+            <li>Implement a passing assert statement for each assert method on the last slide ( docs <a target="_blank" href="http://docs.python.org/2/library/unittest.html#assert-methods">unittest.html#assert-methods</a> )</li>
+            <li>Run the test module and make sure all assertions pass
+            <li>Do you understand where you'd use each type of assert?
+        </ol>
+    </section>
+
+
 
     <section class="slide">
         <h2>Fixtures: Setting up your tests for success (or failure!)</h2>
-        <p>Test fixtures are a fixed baseline for tests to run from consistently, also known as test context
-        <p>Fixtures can be set up fresh before each test, once before each test case, or before an entire test suite
+        <p>Fixtures can be set up fresh before each test for reusable contexts
         <p>unittest provides fixture support via these methods:
         <ul>
             <li>setUp / tearDown - these are run before and after each test method
@@ -155,26 +170,30 @@ class TestTest(unittest.TestCase):
             <li>setUpModule / tearDownModule - run before/after each TestSuite
             <li>(new in Python 2.7) addCleanup / doCleanups - called after tearDown, in case a test throws an exception
         </ul>
-
     </section>
+
+
+    <section class="slide">
+        <h2>Example:</h2>
+        <p>Let's play with the code in /examples/week-01/unittest_ex/example3_flow.py
+    </section>
+
 
     <section class="slide">
         <h2>Testing floating point values</h2>
         <p>Why can't we just test if .5 == .5 ?
-
-        <pre>
-        <code>
-3*.15 == .45
+<pre><code>In [19]: 3*.15 == .45
 Out[19]: False
 
 In [24]: 3*.15 * 10 / 10  == .45
 Out[24]: True
-        </code>
-        </pre>
-
-        <p>There are an infinite number of floating point numbers, so they are stored as an approximation in computing hardware.
+</code></pre>
+        <p>There is an infinite amount of precision
+        <p>Floats are stored as an approximation in computing hardware
         <p><a target="_blank" href="https://docs.python.org/2/tutorial/floatingpoint.html">https://docs.python.org/2/tutorial/floatingpoint.html</a>
     </section>
+
+
 
     <section class="slide">
         <h2>levels of precision of floating point</h2>
@@ -182,9 +201,7 @@ Out[24]: True
         <a target="_blank" href="http://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 64-bit double precision format,
         which allows 1 bit for the sign, 11 bits for the exponent, and the remaining 52 for the fraction
         <p>So we can count on 16 digits of precision in decimal:
-        <pre><code>
-
-In [39]: len(str(2**52))
+<pre><code>In [39]: len(str(2**52))
 Out[39]: 16
 
 In [40]: .1+.2
@@ -193,17 +210,23 @@ Out[40]: 0.30000000000000004
 In [41]: len('3000000000000000')
 Out[41]: 16
 
-# with repeated operations, the errors eventually build up: here's multiplying by '1' 10 billion times:
-In [64]: x=1
-In [69]: for i in xrange(10000000000): x *= (.1 + .2)/.3
-        </code></pre>
+# we can visualize the approximation
+In [2]: "%.16f" % 0.1
+Out[2]: '0.1000000000000000'
+
+# with repeated operations, errors build up 
+In [43]: sum([0.1 for i in range(10)])
+Out[43]: 0.9999999999999999
+</code></pre>
     </section>
+
+
+
     <section class="slide">
         <h2>assertAlmostEqual</h2>
-        <p>Verifies that two floating point values are close enough to each other.  Add a places keyword argument to specify the number of significant digits.
-    <pre><code>
-import unittest
-
+        <p>Verifies two floating point values are close enough
+        <p>places kwarg specifies the number of significant digits to test against
+<pre><code>import unittest
 class TestAlmostEqual(unittest.TestCase):
 
     def setUp(self):
@@ -214,33 +237,41 @@ class TestAlmostEqual(unittest.TestCase):
 
     def test_almost_equal(self):
         self.assertAlmostEqual(3*.15, .45, places=7)
+</code></pre>
+<p>See /examples/week-01/unittest_ex/almostequal.py
+    </section>
 
-    </code></pre>
+
+    <section class="slide">
+        <h2>Example:</h2>
+        <p>Practice makes perfect. See /examples/week-01/unittest_ex/ascii.py</p>
+        <ul>
+            <li>Let's write tests around this wonderful piece of code together
+            <li>Let's think about the interaction of the class functions
+            <li>Let's think about the number of if statements
+        </ul>
     </section>
 
     <section class="slide">
-        <h2>Running your tests</h2>
-        <p>Call unittest.main() right in your module
-    <pre><code>
-    if __name__ == "__main__":
-        unittest.main()
-    </code></pre>
-        <p>If it gets cumbersome with many TestCases, organize the tests into a test suite</p>
+        <h2>Exercise:</h2>
+        <p>More practice makes perfect. See /examples/week-01/unittest_ex/ascii_counter.py</p>
+        <ol>
+            <li>Write tests around this piece of code
+            <li>Run tests to verify that everything works
+            <li>Did you cover all code paths? How can you be sure?
+        </ol>
     </section>
-
+    
     <section class="slide">
         <h2>Test Suites</h2>
-        <p>Test suites group test cases into a single testable unit
-    <pre><code>
-import unittest
-
+        <p>Test suites group test cases into a single testable unit</p>
+        <p><code>unittest.main()</code> gets cumbersome after awhile</p>
+<pre><code>import unittest
 from calculator_test import TestCalculatorFunctions
-
 suite = unittest.TestLoader().loadTestsFromTestCase(TestCalculatorFunctions)
-
 unittest.TextTestRunner(verbosity=2).run(suite)
-    </code></pre>
-
+</code></pre>
+        <p>In terms of verbosity, that's not much better
     </section>
 
     <section class="slide">
@@ -276,7 +307,16 @@ unittest.TextTestRunner(verbosity=2).run(suite)
     <pre><code>
     $ nosetests --processes=5
     </code></pre>
+    </section>
 
+    <section class="slide">
+        <h2>Target a Specific Test</h2>
+        <p>We don't always want to run the entire test suite</p>
+        <p>In order to run a single test with nose:</p>
+        <p>
+<pre><code>nosetests calculator_test.py:TestCalculatorFunctions.test_add
+</code></pre>
+        </p>
     </section>
 
     <section class="slide">
@@ -344,45 +384,25 @@ if __name__ == '__main__':
     <pre><code>
     python -m doctest -v example.py
     </pre></code>
-    <p>Now generate documentation, using epydoc for example:
-    <pre><code>
-    $ epydoc example.py
-    </pre></code>
-
     <p><a target="_blank" href="http://docs.python.org/2/library/doctest.html">http://docs.python.org/2/library/doctest.html</a>
     <p><a target="_blank" href="http://www.python.org/dev/peps/pep-0257/">http://www.python.org/dev/peps/pep-0257/</a>
-    <p><a target="_blank" href="http://epydoc.sourceforge.net/">http://epydoc.sourceforge.net/</a>
-    <p><a target="_blank" href="http://sphinx-doc.org/">http://sphinx-doc.org/</a>
-    <p><a target="_blank" href="http://www.doxygen.org">http://www.doxygen.org</a>
-
     </section>
 
-    <section class="slide">
-        <h2>Test Driven Development (TDD)</h2>
-        <p>In TDD, the tests are written the meet the requirements before the code exists.
-        <p>Once the collection of tests passes, the requirement is considered met.
-        <p>We don't always want to run the entire test suite.  In order to run a single test with nose:</p>
-        <p>
-        <pre><code>
-        nosetests calculator_test.py:TestCalculatorFunctions.test_add
-        </code></pre>
-        </p>
-    </section>
 
     <section class="slide">
-        <h2>Exercises</h2>
+        <h2>Exercises:</h2>
+        <p>Using the existing code in /examples/week-01/calculator/calculator_test.py:
         <ol>
             <li>Add unit tests for each method in calculator_functions.py
-            <li>Use setUp/tearDown methods to setup test fixtures. Do you understand how they behave? 
-            <li>Add additional unit tests for floating point calculations
+            <li>Use setUp/tearDown methods to setup test fixtures
+            <li>Do you understand how they behave? 
+            <li>Change divide to use floats and divide unit tests for floating point calculations
             <li>Try adding doctests to calculator_functions.py
-	    <li>When your tests are done, try running the 'coverage' command on them. Hint: 'nosetests' takes a couple of flags
-		<pre>--with-coverage --cover-branches</pre>
         </ol>
     </section>
 
     <section class="slide">
-        <h2>One more Python feature before getting back to testing.. the "with" statement</h2>
+        <h2>A Python feature before getting back to testing.. the "with" statement</h2>
     </section>
 
     <section class="slide">
@@ -402,10 +422,8 @@ if __name__ == '__main__':
         <h2>Writing a context manager</h2>
         <p>Define __enter__(self) and __exit__(self, type, value, traceback) on a class
         <p>If __exit__ returns a true value, a caught exception is not re-raised
-        <p>For example :
-    <pre><code>
-    import os, random, shutil, time
-
+        <p>See the code below in /examples/week-01/contextmanagers/context_manager.py
+<pre><code>import os, random, shutil, time
     class TemporaryDirectory(object):
         """A context manager for creating a temporary directory which gets destroyed on context exit"""
 
@@ -428,30 +446,29 @@ if __name__ == '__main__':
             f.write("foo")
 
         time.sleep(5)
-    </code></pre>
+</code></pre>
         <p>
             <a target="_blank" href="http://www.python.org/dev/peps/pep-0343/">http://www.python.org/dev/peps/pep-0343/</a>
     </p>
     </section>
 
     <section class="slide">
-        <h2>Context Manager exercise</h2>
-        <p>Create a context manager which prints information on all exceptions which occur in the context and continues execution</p>
-    <pre><code>
-    with YourExceptionHandler():
-        print "do some stuff here"
-        1/0
+        <h2>Context Manager Example</h2>
+        <p>Goal: Create a context manager which prints information on all exceptions which occur in the context and continues execution</p>
+<pre><code>with YourExceptionHandler():
+    print "do some stuff here"
+    1/0
 
-    print "should still reach this point"
-
-    </code></pre>
+print "should still reach this point"
+</code></pre>
     <p class="slide">Why might using a context manager be better than implementing this with try..except..finally ?</p>
     <p class="slide">Also see the <a target="_blank" href="http://docs.python.org/2/library/contextlib.html">contextlib module</a></p>
     </section>
 
     <section class="slide">
         <h2>Now we've got the tools to really test</h2>
-        <p>Consider the application in the examples/wikidef directory.  Give the command line utility a subject, and it will return a definition.</p>
+        <p>Consider the application in the examples/week-01/wikidef directory
+        <p>Give the command line utility a subject, and it will return a definition
     <pre><code>
     ./define.py  Robot | html2text
     </code></pre>
@@ -470,24 +487,123 @@ if __name__ == '__main__':
 
     <section class="slide">
         <h2>Mocks</h2>
-        <p>The MagickMock class will keep track of calls to it so we can verify that the class is being called correctly, without having to execute the code underneath</p>
-    <pre><code>
-    import mock
-
-    mock_object = mock.MagicMock()
-    mock_object.foo.return_value = "foo return"
-    print mock_object.foo.call_count
-    print mock_object.foo()
-    print mock_object.foo.call_count
-    # raise an exception by assigning to the side_effect attribute
-    mock_object.foo.side_effect = Exception
-    mock_object.foo()
-
-    </code></pre>
+        <p>The MagickMock can do a lot of "magic" things that help in testing:
+        <p>Let's look at /examples/week-01/magicmock/basic_example.py
+<pre><code>import mock
+mock_object = mock.MagicMock()
+mock_object.foo.return_value = "foo return"
+print mock_object.foo.call_count
+print mock_object.foo()
+print mock_object.foo.call_count
+# raise an exception by assigning to the side_effect attribute
+mock_object.foo.side_effect = Exception
+mock_object.foo()
+</code></pre>
     <!--     <p>Mock objects have their own asserts, see the API documentation for a listing:</p>
         <p>
             <a target="_blank" href="http://www.voidspace.org.uk/python/mock/mock.html">http://www.voidspace.org.uk/python/mock/mock.html</a>
         </p> -->
+    </section>
+
+    <section class="slide">
+        <h2>Example:</h2>
+        <p>Remember that hard to test ascii code in /examples/week-01/unittest_ex/ascii.py?
+        <ol>
+            <li>Let's go back and rewrite those tests together
+            <li>Let's make sure our unittests only test "one" function at a time
+        </ol>
+    </section>
+
+
+    <section class="slide">
+        <h2>One last Python feature before getting back to testing... @decorators</h2>
+    </section>
+
+
+    <section class="slide">
+        <h2>Decorator Definition...</h2>
+        <p>Python functions can accept functions as arguments and return them:</p>
+<pre><code>def x( function_z ):
+    def y():
+        # execute the passed fn
+        function_z()
+    return y
+</code></pre>
+        <p>We also know that Python functions are just objects:</p>
+<pre><code>
+In [1]: def foo():pass
+
+In [2]: isinstance( foo, object )
+Out[2]: True
+</code></pre>
+    </section>
+
+    <section class="slide">
+        <h2>Decorator Definition...</h2>
+        <p>I want to add additional functionality to a class or function</p> 
+        <p>I want to add this at runtime without changing the code of the class or function</p>
+        <p>If we do this type of thing a lot, then we are just following a <a href="https://en.wikipedia.org/?title=Decorator_pattern">Gang-of-Four pattern</a></p>
+    </section>
+
+    <section class="slide">
+        <h2>Decorator Example</h2>
+        <p>Find the example in /examples/week-01/decorators/loggly.py</p>
+<pre><code>def loggly(func):
+    def logger(*args, **kwargs):
+        if not kwargs.get( 'muffle', False ):
+            print "executing '{}'".format( func.__name__ )
+            print "\twith args: {}".format( args )
+            print "\twith kwargs: {}".format( kwargs )
+        return func(*args, **kwargs)
+    return logger
+</code></pre>
+    </section>
+
+
+    <section class="slide">
+        <h2>Decorator Example</h2>
+        <p>That muffle arg passing is extremely ugly
+<pre><code>@loggly
+def test2(x,y,muffle=True):
+    return x * y
+</code></pre>
+        <p>Is there a better way? Yes and No:
+<pre><code>def one(arg=False):
+    def two_decorator(func):
+        def three(*args, **kwargs):
+            # important code happens here...
+            return func(*args, **kwargs)
+        return three
+    return two_decorator
+</code></pre>
+    </section>
+
+    <section class="slide">
+        <h2>Exercise:</h2>
+        <p>Using the loggly decorator as an example:</p>
+        <ol>
+            <li>Write a decorator that times the execution of a function</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Where to use Decorators?</h2>
+        <p>Gut checking use cases:</p>
+        <ul>
+            <li>It's a form of refactoring and code resuse. What can we generalize?
+            <li>If we want to modify an exisiting func input/output without modifying the func signature
+        </ul>
+        <p>Developers always need to weigh design choices against drawbacks:
+        <ul>
+            <li>Readability
+            <li>Simplicity
+            <li>Optimization (speed/memory)
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Example:</h2>
+        <p>Let's look at the code in /examples/week-01/decorators/memoize.py
     </section>
 
     <section class="slide">
@@ -496,21 +612,22 @@ if __name__ == '__main__':
         <p> Inside the body of the function or with statement, the target is patched with a new object. When the function/with statement exits the patch is undone</p>
     </section>
 
+
+
     <section class="slide">
         <h2>Using patch</h2>
-    <pre><code>
-# patch with a decorator
+<p>See /examples/week-01/solutions/wikidef_test_mock_methods.py
+<pre><code># patch with a decorator
 @patch.object(Wikipedia, 'article')
 def test_article_success_decorator_mocked(self, mock_method):
     article = Definitions.article("Robot")
     mock_method.assert_called_once_with("Robot")
 
-# patch with a context manager
 def test_article_success_context_manager_mocked(self):
     with patch.object(Wikipedia, 'article') as mock_method:
         article = Definitions.article("Robot")
         mock_method.assert_called_once_with("Robot")
-    </code></pre>
+</code></pre>
     <p>
             <a target="_blank" href="http://www.voidspace.org.uk/python/mock/patch.html">http://www.voidspace.org.uk/python/mock/patch.html</a>
     </section>
