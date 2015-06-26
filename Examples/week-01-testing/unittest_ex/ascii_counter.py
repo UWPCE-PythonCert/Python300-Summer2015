@@ -3,17 +3,17 @@ import unittest
 
 class AsciiCounter( object ):
     """
-    returns dict of total number of ascii character occurences
+    returns dict of total number of ascii character occurrences
     """
 
     def new_or_add( self, ascii_char_key, char_dict ):
-        num_occurences = char_dict.get( ascii_char_key, None )
-        if num_occurences is None:
+        num_occurrences = char_dict.get( ascii_char_key, None )
+        if num_occurrences is None:
             # new
             char_dict[ ascii_char_key ] = 1
             return 
         # increment
-        char_dict[ ascii_char_key ] = num_occurences + 1
+        char_dict[ ascii_char_key ] = num_occurrences + 1
         return
             
     def count_all( self, ascii_str ):
@@ -49,3 +49,6 @@ class TestAsciiCounter( unittest.TestCase ):
 
     def test_convert_at_index_empty_result(self):
         pass
+
+if __name__ == '__main__':
+    unittest.main()
