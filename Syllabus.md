@@ -12,6 +12,11 @@ Rick Riehle ( rriehle@uw.edu )
 
 Sundays ( 9:00am to 11:00am ) online and in person ( place to be decided )
 
+
+### Recommended Books
+
+[Learning Python, 5th Edition](http://proquest.safaribooksonline.com/9781449355722?uicode=spl&cid=shareLink)
+
 ### Course Materials
 
 Lecture Slides and Code Examples:
