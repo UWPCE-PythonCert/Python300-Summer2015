@@ -16,6 +16,8 @@ Sundays ( 9:00am to 11:00am ) online and in person ( place to be decided )
 ### Recommended Books
 
 [Learning Python, 5th Edition](http://proquest.safaribooksonline.com/9781449355722?uicode=spl&cid=shareLink)
+[SciPyLectures](https://scipy-lectures.github.io/)
+[Python Course](http://www.python-course.eu/) for Python2 and Python3 
 
 ### Course Materials
 
