@@ -1,5 +1,8 @@
 import string
 import unittest
+import mock
+from mock import MagicMock
+
 
 class Ascii2Ord( object ):
     """
@@ -44,10 +47,15 @@ class TestAscii2Ord( unittest.TestCase ):
         pass
 
     def test_convert_all_missing_result(self):
-        pass
-
-    def test_convert_all_missing_result(self):
-        # harder to write, let's move on
+        #
+        #  harder to write, let's move on
+        #  NOTE: we need two more tests here
+        #  1. we need a test that asserts nothing was called
+        #  2. we need a test that asserts None return value
+        #  3. let's look at multiple side effects
+        #  4. let's look at Spy's
+        #  5. Note that the spy has assertions too
+        #
         pass
 
     def test_convert_all_missing_index_error(self):
