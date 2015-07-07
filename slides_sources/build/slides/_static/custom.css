@@ -112,10 +112,10 @@ article dl {
   margin-bottom: 10em; }
   article dl dt {
     font-weight: bold;
-    margin-bottom: .25em; }
+    margin-bottom: 0.25em; }
   article dl dd {
     padding-left: 1em;
-    margin-bottom: .5em; }
+    margin-bottom: 0.5em; }
 article .docutils.literal {
   font-family: 'Droid Sans Mono', 'Courier New', monospace; }
 article .toctree-wrapper li a {

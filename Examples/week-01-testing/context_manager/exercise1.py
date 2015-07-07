@@ -10,7 +10,6 @@ class YourExceptionHandler(object):
         else:
             return False
 
-
 with YourExceptionHandler():
     print "do some stuff here"
     1 / 0

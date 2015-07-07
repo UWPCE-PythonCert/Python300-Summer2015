@@ -422,34 +422,54 @@ if __name__ == '__main__':
         <h2>Writing a context manager</h2>
         <p>Define __enter__(self) and __exit__(self, type, value, traceback) on a class
         <p>If __exit__ returns a true value, a caught exception is not re-raised
+        <p>Let's play with a simple example in /examples/week-01/contextmanagers/simple.py
+    </section>
+
+    <section class="slide">
+        <h2>Context Manager Example</h2>
         <p>See the code below in /examples/week-01/contextmanagers/context_manager.py
 <pre><code>import os, random, shutil, time
-    class TemporaryDirectory(object):
-        """A context manager for creating a temporary directory which gets destroyed on context exit"""
+class TemporaryDirectory(object):
+    """A context manager for creating a temp directory that gets destroyed on exit"""
 
-        def __init__(self,directory):
-            self.base_directory = directory
+    def __init__(self,directory):
+        self.base_directory = directory
 
-        def __enter__(self):
-            # set things up
-            self.directory = os.path.join(self.base_directory, str(random.random()))
-            os.makedirs(self.directory)
-            return self.directory
+    def __enter__(self):
+        # set things up
+        self.directory = os.path.join(
+            self.base_directory, str(random.random())
+        )
+        os.makedirs(self.directory)
+        return self.directory
 
-        def __exit__(self, type, value, traceback):
-            # tear it down
-            shutil.rmtree(self.directory)
+    def __exit__(self, type, value, traceback):
+        # tear it down
+        shutil.rmtree(self.directory)
 
-    with TemporaryDirectory("/tmp/foo") as dir:
-        # write some temp data into dir
-        with open(os.path.join(dir, "foo.txt"), 'wb') as f:
-            f.write("foo")
-
-        time.sleep(5)
+with TemporaryDirectory("/tmp/foo") as dir:
+    # write some temp data into dir
+    with open(os.path.join(dir, "foo.txt"), 'wb') as f:
+        f.write("foo")
+    time.sleep(5)
 </code></pre>
         <p>
             <a target="_blank" href="http://www.python.org/dev/peps/pep-0343/">http://www.python.org/dev/peps/pep-0343/</a>
     </p>
+    </section>
+
+    <section class="slide">
+        <h2>Context Manager Decorator</h2>
+        <p>We can skip all the boiler plate when we need a context manager
+        <p>See the example /examples/week-01/context_manager/simple_as_decorater.py
+<pre><code>from contextlib import contextmanager
+
+@contextmanager
+def func(name):
+    print "__enter__"
+    yield
+    print "__exit__"
+</code></pre>
     </section>
 
     <section class="slide">
