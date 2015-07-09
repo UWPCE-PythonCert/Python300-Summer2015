@@ -30,6 +30,7 @@ assert mock_object.foo.called == True
 mock_object.foo('blah')
 # NOTE: mocked objects have a few assertion methods on them
 mock_object.foo.assert_called_with('blah')
+mock_object.foo.assert_called_any('blah')
 
 #
 # raise an exception by assigning to the side_effect attribute
