@@ -10,7 +10,7 @@ Rick Riehle ( rriehle@uw.edu )
 
 ### Office Hours
 
-Sundays ( 9:00am to 11:00am ) online and in person ( place to be decided )
+Sundays ( 9:00am to 11:00am ) online and in person at [Cafe Vivace across from REI](https://www.google.com/maps/place/Espresso+Vivace/@47.620179,-122.3305842,17z/data=!4m6!1m3!3m2!1s0x0:0xe8ff4c1a87da653b!2sEspresso+Vivace!3m1!1s0x0:0xe8ff4c1a87da653b)
 
 
 ### Recommended Books
