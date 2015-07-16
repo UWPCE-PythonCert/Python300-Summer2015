@@ -5,10 +5,7 @@ class YourExceptionHandler(object):
 
     def __exit__(self, ex_type, value, traceback):
         print "there was a %s error" % ex_type
-        if ex_type is ZeroDivisionError:
-            return True
-        else:
-            return False
+        return True
 
 with YourExceptionHandler():
     print "do some stuff here"

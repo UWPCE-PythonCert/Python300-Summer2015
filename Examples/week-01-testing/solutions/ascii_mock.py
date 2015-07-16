@@ -54,13 +54,13 @@ class TestAscii2Ord( unittest.TestCase ):
         #
         # ARRANGE
         original_method = Ascii2Ord.to_ordinal
-        Ascii2Ord.to_ordinal = MagicMock(return_value=True)
+        Ascii2Ord.to_ordinal = MagicMock(return_value=100)
 
         # ACT
-        Ascii2Ord().convert_all('abc')
+        Ascii2Ord().convert_all('')
 
         # ASSERT
-        self.assertEqual(Ascii2Ord.to_ordinal.call_count,3)
+        self.assertEqual(Ascii2Ord.to_ordinal.call_count,0)
         Ascii2Ord.to_ordinal = original_method
 
     def test_convert_all_return_value_None(self):
@@ -92,10 +92,11 @@ class TestAscii2Ord( unittest.TestCase ):
         Ascii2Ord.to_ordinal = MagicMock(side_effect=[97,97,None,None])
 
         # ACT
-        results = Ascii2Ord().convert_all('junk')
+        results = Ascii2Ord().convert_all('aank')
 
         # ASSERT
         self.assertEqual(Ascii2Ord.to_ordinal.call_count,4)
+        Ascii2Ord.to_ordinal.assert_with_any('a')
         self.assertEqual(results,[97,97])
         Ascii2Ord.to_ordinal = original_method
 

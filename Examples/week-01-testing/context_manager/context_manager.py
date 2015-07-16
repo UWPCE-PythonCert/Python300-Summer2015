@@ -11,7 +11,7 @@ class TemporaryDirectory(object):
         os.makedirs(self.directory)
         return self.directory
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, exc_type, exc_value, exc_traceback):
         # tear it down
         shutil.rmtree(self.directory)
 
@@ -19,5 +19,4 @@ with TemporaryDirectory("/tmp/foo") as dir:
     # write some temp data into dir
     with open(os.path.join(dir, "foo.txt"), 'wb') as f:
         f.write("foo")
-
-    time.sleep(10)
+    time.sleep(1)
