@@ -1,4 +1,16 @@
 
+def main():
+    x = 'main'
+    one()
+
+def one():
+    y = 'one'
+    two()
+
+def two():
+    z = 'two'
+    long_loop()
+
 def long_loop():
     #import pdb; pdb.set_trace()
     for i in range(int(1e04)):
@@ -9,5 +21,5 @@ def long_loop():
     return result
 
 if __name__ == '__main__':
-    print long_loop()
+    print main()
     print "last statement"        
