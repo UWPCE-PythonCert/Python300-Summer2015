@@ -20,4 +20,10 @@ Week 1
 
   `Unit Testing and Coverage <html_slides/01-unittest-coverage.html>`_
 
+Week 3
+===========
+
+.. rst-class:: left
+
+  `Debugging <html_slides/03-debugging.html>`_
 
