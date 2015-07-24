@@ -27,7 +27,7 @@ Week 3
 
   `Debugging <html_slides/03-debugging.html>`_
 
-  `Iterators and Decorators <html_slides/03-iterators-decorators.html>`_
+.. `Iterators and Decorators <html_slides/03-iterators-decorators.html>`_
 
   `Relation DB <html_slides/04-db.html>`_
 
