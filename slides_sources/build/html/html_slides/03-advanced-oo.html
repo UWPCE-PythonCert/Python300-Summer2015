@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=1024, user-scalable=no">
 
-  <title>Python300 week 03, metaclasses</title>
+  <title>Python300 week 05 -- Advanced OO</title>
 
   <!-- Required stylesheet -->
   <link rel="stylesheet" media="screen" href="deckjs/core/deck.core.css">
@@ -38,9 +38,8 @@
     </section>
 <section class="slide">
     <h2>Old and New classes</h2>
-    <p>Python is an evolving language. As of Python 2.2, we have old-style and new-style classes.  The distinction disappears in Python 3.
-    <p>New-style classes were introduced to unify user defined classes and built-in types.
-    <p>This allows the extension of built-in types, for instance
+    <p>Python is an evolving language. Python 2.2 introduced new-style classes. The distinction disappears in Python 3.
+    <p>New-style classes were introduced to unify user defined classes. This also allows the extension of built-in types.
     <p>To make a new-style class, derive from any other new-style class, or <i>object</i></p>
 <pre>
 <code>class C(object):
@@ -50,11 +49,12 @@ class D():
     # this is an old style class (in Python 2)
         </code>
 </pre>
-    <p>You almost always want new-style classes.
     <p>Some newer features of the language such as properties, super(), etc. do not work with old-style classes.
 </section>
+
 <section class="slide">
   <h2>Subclassing</h2>
+  <p>See examples in /examples/week-05/new_vs_old/
 <pre><code>class Shape(object):
     def __str__(self):
         return "Shape:{}".format(self.__class__.__name__)
@@ -75,68 +75,76 @@ class Square(Rectangle):
         self.width = length
         self.height = length</code></pre>
 
-<p>Square inherits the area method from Rectangle
-<p>Square overrides the __init__ method so it only takes a single argument
-<p>Does Square still get the validation in Rectangle.__init__?
-
+<p>NOTE: Square overrides the __init__ method so it only takes a single argument
+<p>Questions:
+<ul>
+    <li>What methods does Square inherit from Shape?
+    <li>What methods does Square inherit from Rectangle?
+    <li>Does Square still get the validation in Rectangle.__init__?
+</ul>
 </section>
 
 <section class="slide">
-  <h2>Referencing the parent classes with super()</h2>
-  <p>When you override a method in a subclass, it masks the definition of parent classes
-  <p>Most things aren't really hidden in Python, you can reference the parent class definitions by explicit reference:
-<pre><code>
-Square.__init__(self, length, length)
-</code></pre>
-<p>However, there might be multiple parent classes, and this method tightly couples the definition of Square with the definition of Shape.
-<p>We want to locate the method using the same traversal as Python using super()
-<pre><code>class Square(Rectangle): pass
-
-class MyClass(ParentClass):
-  def __init__(self):
-    super(MyClass, self).__init__()</code></pre>
-
+  <h2>Example: Reuse Parent Validation</h2>
+  <p>Let's code this together. See /examples/week-05/new_vs_old/shapes_old_style.py
 </section>
+
+<section class="slide">
+  <h2>Referencing Parent with super()</h2>
+  <p>When you override a method in a subclass, it masks the definition of parent classes
+  <p>Most things aren't really hidden in Python, you can reference the parent class definitions by explicit reference. For example, the code below illustrates us calling the Square's parent __init__ method
+<pre><code>Rectangle.__init__(self, length, length)</code></pre>
+</section>
+
+<section class="slide">
+    <h2>Pattern Fugliness</h2>
+    <p>Using this type explicit calling pattern in the old style has drawbacks:
+    <ol>
+        <li>Python classes can inherit from multiple sources -- multiple parent classes. In these cases parent methods become tightly coupled to the definition of the children
+        <li>It makes subclasses from Python base types harder
+    </ol>
+    <p>Let's look at the example in /examples/week-05/new_vs_old/shapes_as_mixins.py
+</section>
+
+<section class="slide">
+    <h2>super() Solution</h2>
+    <p>We want one method that traverses the parents' __init__ methods and resolves them -- super()
+<pre><code>class Square(Rectangle):
+  def __init__(self,width,height):
+    super(Square, self).__init__(length,length)</code></pre>
+</section>
+
+<section class="slide">
+    <h2>Example: Fix It</h2>
+    <p>Let's look at this example again /examples/week-05/new_vs_old/shapes_as_mixins.py
+</section>
+
+<section class="slide">
+  <h2>Exercise: Reuse Parent Class's Validation</h2>
+  <p>Using the code in /examples/week-05/new_vs_old/shapes_new_style.py
+  <ol>
+    <li>Reuse the Rectangle class's __init__ validation using super()
+    <li>Write some quick assert statments to make sure everything works
+  </ol>
+</section>
+
+
 <section class="slide">
 <h2>super()</h2>
-<p>super() returns a delegate object, which will delegate method calls to the appropriate class definition
-<p>It will return either a bound or unbound method depending on the parameters
-<pre><code>super(type, obj) -> bound super object; requires isinstance(obj, type)
+<p>super() returns a delegate object, which will delegate method calls to the appropriate class definition. This is important. Let's talk about why
+<p>The two most common forms you'll see used are with bound and unbound methods:
+<pre><code>super(type, obj) # passes isinstance(obj, type) test
+super(type, type2) # passes issubclass(type2, type) test</code></pre>
+</section>
 
-super(type) -> unbound super object
-
-super(type, type2) -> bound super object; requires issubclass(type2, type)</code></pre>
-
-<p>A bound method is one bound to an instance, just a normal method:
-<pre><code>
-class Foo(object):
+<section class="slide">
+<h2>super()...</h2>
+<p>Let's review bound and unbound methods. The two forms on the previous slide are used to lookup  instance and class methods
+<p>See /examples/week-05/super_bound_unbound.py
+<pre><code>class Foo(object):
     def bound_method(self): pass
     @classmethod
     def unbound_method(): pass
-foo = Foo()
-foo.bound_method() # method is bound to the foo instance
-Foo.unbound_method() # method is not bound
-</code></pre>
-</section>
-
-<section class="slide">
-  <h2>Matching function signatures</h2>
-  <p>In a class hierarchy, super() requires function signatures to match
-  <p>If subclasses require different arguments, don't specify them explicitly but
-  use variable length argument lists for all definitions, e.g.
-<pre><code>def my_method(self, *args, **kwargs)</code></pre>
-  <p>
-<pre><code>class Shape(object):
-    def __init__(self, shapename, **kwargs):
-        self.shapename = shapename
-        super(Shape, self).__init__(**kwargs)
-
-class ColoredShape(Shape):
-    def __init__(self, color, **kwargs):
-        self.color = color
-        super(ColoredShape, self).__init__(**kwargs)
-
-cs = ColoredShape(color='red', shapename='circle')
 </code></pre>
 </section>
 
@@ -240,6 +248,25 @@ class C(A,B): pass</code></pre>
 <li>all overriden methods *must* use super()
 <p><a href="">see /examples/week-03-oo/super/super_must_use_super.py</a>
 </ol>
+</section>
+
+<section class="slide">
+  <h2>Matching function signatures</h2>
+  <p>In a class hierarchy, super() requires function signatures to match
+  <p>What do we do if our subclasses require different arguments? 
+<pre><code>class Shape(object):
+    def __init__(self, shapename, **kwargs):
+        self.shapename = shapename
+        super(Shape, self).__init__(**kwargs)
+
+class ColoredShape(Shape):
+    def __init__(self, color, **kwargs):
+        self.color = color
+        super(ColoredShape, self).__init__(**kwargs)
+
+cs = ColoredShape(color='red', shapename='circle')
+</code></pre>
+<p>See example in /examples/week-05/var_args/colored_shapes.py
 </section>
 
 <section class="slide">
