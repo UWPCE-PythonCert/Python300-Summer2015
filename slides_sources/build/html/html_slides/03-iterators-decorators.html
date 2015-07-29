@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Python300 week 03, iterators and decorators</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="deckjs/core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="deckjs/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="deckjs/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="deckjs/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="deckjs/extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="deckjs/extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="deckjs/themes/style/swiss.css">
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="deckjs/themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="deckjs/core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="deckjs/modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+      <section class="slide">
+          <h2>System Development with Python</h2>
+          <h3>Week 3 :: iterators and generators</h3>
+      </section>
+
+      <section class="slide">
+          <h2>Exceptions aren't just for errors</h2>
+          <p>Exception handling can be used for control flow as well
+          <p>i.e. StopIteration for iterators</p>
+      </section>
+
+      <!--
+      <section class="slide">
+      <h2>FibIterator, demonstrating StopIteration</h2>
+      <pre><code>
+      class FibIterator(object):
+
+          def __init__(self):
+              self.data = [0,1,1,2,3,5,8,13,21]
+              self.i = 0
+
+          def __iter__(self):
+              return self
+
+          def next(self):
+              if self.i >= len(self.data):
+                  raise StopIteration
+
+              value = self.data[self.i]
+              self.i += 1
+              return value
+
+      iter = FibIterator()
+      for x in iter:
+          print x
+      </code></pre>
+      </section>
+      -->
+
+
+      <section class="slide">
+          <h2>Iterators</h2>
+          <p>Iterators are objects which support a concept of iteration over a collection
+      <pre><code># looping over the lines in a file is done via an iterator:
+  with open("file.dat") as f:
+      for line in f:
+          print line
+
+  # and you can create your own
+  for x in foo():
+      print x</code></pre>
+          <p>An iterator is an object which follows the Python <a target="blank" href="https://docs.python.org/2/library/stdtypes.html#container.__iter__">iterator protocol</a>
+          <p>An iterator defines two required methods in order to iterate
+          <ul>
+              <li>__iter__() returns the iterator itself
+              <li>next() returns the next item in the sequence
+          </ul>
+          <p>
+              <a target="_blank" href="http://docs.python.org/2/library/stdtypes.html#iterator-types">http://docs.python.org/2/library/stdtypes.html#iterator-types</a>
+          </p>
+
+      </section>
+
+      <section class="slide">
+          <h2>Demonstration iterator</h2>
+  <pre><code>class CountToTen(object):
+      """an iterator which returns integers from 0 to 9, inclusive"""
+
+      def __init__(self):
+          self.data = range(10)
+
+      def __iter__(self):
+          return self
+
+      def next(self):
+          try:
+              return self.data.pop(0)
+          except IndexError:
+              raise StopIteration
+
+  for x in CountToTen():
+      print x
+
+  # or consume the whole thing at once by converting to a list:
+  list(CountToTen())
+  </code></pre>
+      </p>
+      </section>
+
+      <section class="slide">
+          <h2>Now let's build an iterator</h2>
+          <p>Look at the stubbed code in /examples/week-03-debugging/fib_exercise.py</p>
+          <p>Modify the run() function so it is a real iterable</p>
+          <p>The Fibonnaci sequence is defined as such:
+          <ul>
+          <li>The first two integers in the sequence are 0 and 1
+          <li>Each member of the sequence is the sum of the previous two elements
+          </li>
+      <pre><code>for x in FibonacciIterator(20):
+  print x
+      </code></pre>
+
+      </section>
+
+      <section class="slide">
+          <h2>Where do we use iterators and why?</h2>
+          <p>Iterating over resource-intensive types</p>
+
+          <p>Examples in the wild:</p>
+          <ul>
+          <li><p><a href="https://github.com/django/django/search?p=2&q=__iter__&utf8=%E2%9C%93">Big Shapes</a></li>
+          <li><p><a href="https://github.com/django/django/blob/355c5edd9390caad5725375abca03460805f663b/django/db/models/query.py">DB Stuff</a></li>
+          </ul>
+      </section>
+
+
+      <section class="slide">
+      <h2>generators</h2>
+      <p>A <a target="_blank" href="https://wiki.python.org/moin/Generators">generator</a> is a concrete type that implements the iterator protocol.
+      <p>Convert a function to a generator using the yield keyword</p>
+      <pre><code>def count_to_10():
+    for i in range(10):
+        yield i
+
+for x in count_to_10():
+    print x
+      </code></pre>
+      <p>(4700 upvotes on this stackoverflow question, yield is confusing at first)</p>
+      <a target="_blank" href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained</a>
+      </section>
+
+      <section class="slide">
+      <h2>Using a generator expression to create a generator</h2>
+      <p>Python list comprehensions allow you to build lists of values</p>
+      <pre><code>my_list = [x for x in open('file.dat')]</code></pre>
+      <p>Convert that list comprehension to a generator just by replacing '[]' with '()'
+      <pre><code>my_generator = (x for x in open('file.dat'))</code></pre>
+      <a target="_blank" href="https://wiki.python.org/moin/Generators">https://wiki.python.org/moin/Generators</a>
+      </section>
+
+
+  <section class="slide">
+      <h1>Questions?</h1>
+  </section>
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <!--
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+    -->
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="deckjs/jquery.min.js"></script>
+<script src="deckjs/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="deckjs/extensions/menu/deck.menu.js"></script>
+<script src="deckjs/extensions/goto/deck.goto.js"></script>
+<script src="deckjs/extensions/status/deck.status.js"></script>
+<script src="deckjs/extensions/navigation/deck.navigation.js"></script>
+<script src="deckjs/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
