@@ -26,10 +26,11 @@ class MotorCycle(TwoWheeledVehicle, HeavyVehicle):
 class Tank(HeavyVehicle):
     pass
 
-bike = Bike()
-#print Bike.mro()
-tank = Tank()
-#print Tank.mro()
+if __name__ == '__main__':
+    bike = Bike()
+    print Bike.mro()
+    tank = Tank()
+    #print Tank.mro()
 
-bike.log()
-tank.log()
+    bike.log()
+    #tank.log()

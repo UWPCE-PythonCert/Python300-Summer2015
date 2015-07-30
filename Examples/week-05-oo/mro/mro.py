@@ -22,18 +22,31 @@ class B1(B):
 class C1(C):
     def my_method(self):
         print "called C1"
-        #super(C1, self).my_method()
+        super(C1, self).my_method()
 
 
-class D(B1, C1):
+class D(B1,C1):
     def my_method(self):
         print "called D"
         super(D, self).my_method()
 
 if __name__ == '__main__':
-    # left to right, factor out A
-    # execution
+    #
+    # some nice utilities
+    # if you haven't used them
+    #
     print D.mro()
     print D.__bases__
+    print A.__subclasses__()
+
+    # what will be the method resolution order
     d = D()
     print d.my_method()
+
+'''
+NOTE:
+0. show diagram
+1. left to right, factor out A
+2. different method resolution orders
+3. remove method
+'''

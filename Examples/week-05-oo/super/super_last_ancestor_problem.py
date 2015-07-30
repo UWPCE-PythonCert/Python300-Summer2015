@@ -13,7 +13,10 @@ class B(object):
         print "B"
         arg = "B" + arg
         # swallow
-        #super(B, self).__init__(arg)
+        super(B, self).__init__(arg)
+
+    def duckduck(self):
+        super(B, self).duckduck()
 
 class C(A):
     def __init__(self, arg):
@@ -29,6 +32,9 @@ class D(B):
         print "D", "arg=",arg
         arg = 'D' + arg
         super(D, self).__init__(arg)
+
+    def duckduck(self):
+        super(D, self).duckduck()
 
 class E(C,D):
     def __init__(self, arg):

@@ -55,7 +55,7 @@ class D():
 <section class="slide">
   <h2>Subclassing</h2>
   <p>See examples in /examples/week-05/new_vs_old/
-<pre><code>class Shape(object):
+<pre><code>class Shape():
     def __str__(self):
         return "Shape:{}".format(self.__class__.__name__)
 
@@ -101,7 +101,7 @@ class Square(Rectangle):
     <p>Using this type explicit calling pattern in the old style has drawbacks:
     <ol>
         <li>Python classes can inherit from multiple sources -- multiple parent classes. In these cases parent methods become tightly coupled to the definition of the children
-        <li>It makes subclasses from Python base types harder
+        <li>It makes subclassing from Python base types harder
     </ol>
     <p>Let's look at the example in /examples/week-05/new_vs_old/shapes_as_mixins.py
 </section>
@@ -120,7 +120,7 @@ class Square(Rectangle):
 </section>
 
 <section class="slide">
-  <h2>Exercise: Reuse Parent Class's Validation</h2>
+  <h2>Exercise: Reuse Parent's Validation</h2>
   <p>Using the code in /examples/week-05/new_vs_old/shapes_new_style.py
   <ol>
     <li>Reuse the Rectangle class's __init__ validation using super()
@@ -180,13 +180,14 @@ super(type, type2) # passes issubclass(type2, type) test</code></pre>
 
 <section class="slide">
     <h2>MRO</h2>
-    <p>The MRO of the previous diagram is [D,B,C,A], and is defined by the C3 linearization algorithm: <a target="_blank" href="http://en.wikipedia.org/wiki/C3_linearization">http://en.wikipedia.org/wiki/C3_linearization</a>
-    <p>In the previous example, what will D.my_method() produce?  Verify your answer with examples/mro.py
-    <p>Classic classes maintain their original method resolution order, depth first and then left to right.</p>
-    <p>In simple cases, this will be a good approximation.
-    <p>In general, children precede their parents and the order of appearance in __bases__ is respected.
+    <p>Let's play with the code in /examples/week-05/mro/mro.py
+    <p>Think about this question:
+    <ul>
+        <li>What's the Method Resolution Order of the last child class?
+    </ul>
     <!--<p>See examples/logging_dict.py</p>-->
     <p>
+        <a target="_blank" href="http://en.wikipedia.org/wiki/C3_linearization">http://en.wikipedia.org/wiki/C3_linearization</a>
         <a target="_blank" href="http://www.python.org/download/releases/2.3/mro/">http://www.python.org/download/releases/2.3/mro/</a>
     </p>
 </section>
@@ -303,10 +304,13 @@ class MyClass(Mixin2, Mixin1, BaseClass):
 
 <section class="slide">
   <h2>Exercise</h2>
-  <p>In examples/mixins.py, you will find a few Vehicle classes laid out in a hierarchy
-  <p>The log() method is defined on Vehicle then called on a couple of instances
-  <p>Modify the class definition for Bike to mix in fancier log() method from LoggingMixin
-  <p>Does the output change accordingly? If it didn't, look at the MRO for Bike?  Is it what you expected?
+  <p>Look at examples/week-05/mro/mixins.py
+  <ul>
+      <li>You will find a few Vehicle classes laid out in a hierarchy
+      <li>The log() method is defined on Vehicle then called on a couple of instances
+      <li>Modify the class definition for Bike to mix in fancier log() method from LoggingMixin
+      <li>Does the output change accordingly? If it didn't, look at the MRO for Bike?  Is it what you expected?
+  </ul>
 </section>
 
 
