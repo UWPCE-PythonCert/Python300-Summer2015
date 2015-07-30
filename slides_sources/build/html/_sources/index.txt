@@ -42,6 +42,6 @@ Week 5
 
   `Advanced OO -- super() <html_slides/03-advanced-oo.html>`_
 
-  `Iterators, Generators, Decorators, Oh My! <html_slides/03-iterators-decorators.html>`_
+  `Iterators, Generators <html_slides/03-iterators-decorators.html>`_
 
 

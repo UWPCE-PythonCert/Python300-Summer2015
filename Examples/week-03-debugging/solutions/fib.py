@@ -4,7 +4,8 @@ class FibIter(object):
         self.n = n
         self.i = 0
 
-    def __iter__(self): return self
+    def __iter__(self):
+        return self
 
     def next(self):
         if self.i == self.n:
@@ -20,5 +21,5 @@ class FibIter(object):
             self.vals.append(new_val)
             return new_val
 
-for x in FibIter(20):
+for x in FibIter(10):
     print x

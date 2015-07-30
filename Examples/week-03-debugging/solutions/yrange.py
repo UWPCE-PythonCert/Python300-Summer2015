@@ -19,4 +19,3 @@ class yrange:
 y = yrange(3)
 print y
 print list( y )
-print list( y )
