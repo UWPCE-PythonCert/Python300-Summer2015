@@ -82,7 +82,7 @@
   # and you can create your own
   for x in foo():
       print x</code></pre>
-          <p>An iterator is an object which follows the Python <a target="blank" href="https://docs.python.org/2/library/stdtypes.html#container.__iter__">iterator protocol</a>
+          <p>An iterable is an object which follows the Python <a target="blank" href="https://docs.python.org/2/library/stdtypes.html#container.__iter__">iterator protocol</a>
           <p>An iterator defines two required methods in order to iterate
           <ul>
               <li>__iter__() returns the iterator itself
@@ -146,6 +146,32 @@
           </ul>
       </section>
 
+      <section class="slide">
+          <h2>Exercise</h2>
+          <p>Look at the code in /examples/week-3/iterators/yrange.py</p>
+          <ul>
+              <li>The yrange function is cheating by proxying it's calls to xrange
+              <li>Remove all calls to xrange
+              <li>Rewrite the yrange' next() method to be it's own range iterable
+          </ul>
+      </section>
+
+      <section class="slide">
+          <h2>Exercise</h2>
+          <p>Write a Take iterable that does the following:
+          <ul>
+              <li>It takes a number ( num ) and a list or tuple ( a_list ) as args
+              <li>It iterates over the a_list and returns list of length num or less from it's current position
+              <li>Words are bad. Here's what example output for one implementation might look like:
+<p><pre><code>
+$ Take( 3, [0,1,2,3] )
+[0,1,2]
+[1,2,3]
+[2,3]
+[3]
+</code></pre></p>
+          </ul>
+      </section>
 
       <section class="slide">
       <h2>generators</h2>
