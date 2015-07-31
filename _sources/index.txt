@@ -27,7 +27,21 @@ Week 3
 
   `Debugging <html_slides/03-debugging.html>`_
 
+
+Week 4
+===========
+
+.. rst-class:: left
+
   `Relation DB <html_slides/04-db.html>`_
 
+Week 5
+===========
+
+.. rst-class:: left
+
+  `Advanced OO -- super() <html_slides/03-advanced-oo.html>`_
+
+  `Iterators, Generators <html_slides/03-iterators-decorators.html>`_
 
 
