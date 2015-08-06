@@ -15,8 +15,10 @@ def ordinalfy(items):
     return results
 
 assert stringify([0,1,2]) == ['0','1','2']
-assert ordinalfy(['a','b','c']) == [97,98,99]
+assert [str(x) for x in [0,1,2]] == ['0','1','2']
 
+assert ordinalfy(['a','b','c']) == [97,98,99]
+assert [ord(x) for x in ['a','b','c']] == [97,98,99]
 
 #
 #  interleave items from two arrays
