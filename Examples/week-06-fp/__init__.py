@@ -1,1 +1,1 @@
-from data import new_releases
+__author__ = 'junkmob'
