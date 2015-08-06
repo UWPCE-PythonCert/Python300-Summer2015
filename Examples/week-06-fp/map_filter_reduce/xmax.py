@@ -1,4 +1,3 @@
-
 def get_max(items):
     '''
     pluck the max value from the list
@@ -18,24 +17,7 @@ def get_max(items):
             max_result = item
     return [] if max_result is None else [max_result]
 
-
-gt = lambda x,y: x > y
-lt = lambda x,y: x < y
-default = lambda item: item or 0
-gt_comparitor = lambda accum,curr: (gt(accum,curr) and accum) or curr
-lt_comparitor = lambda accum,curr: (lt(accum,curr) and accum) or curr
-def get_max(items):
-    try:
-        return [reduce(
-            gt_comparitor,
-            items
-        )]
-    except TypeError:
-        return []
-
-
 if __name__ == '__main__':
-
     print "[ RUNNING ]: get_max tests..."
     assert get_max([5,2,0,1]) == [5]
     assert get_max([-100,0,1,2]) == [2]
