@@ -18,7 +18,5 @@ def ordinalfy(items):
 
 if __name__ == '__main__':
     assert stringify([0,1,2]) == ['0','1','2']
-    assert [str(x) for x in [0,1,2]] == ['0','1','2']
 
     assert ordinalfy(['a','b','c']) == [97,98,99]
-    assert [ord(x) for x in ['a','b','c']] == [97,98,99]
