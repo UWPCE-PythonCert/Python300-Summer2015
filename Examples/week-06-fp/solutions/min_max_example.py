@@ -21,17 +21,13 @@ def get_max(items):
 
 gt = lambda x,y: x > y
 lt = lambda x,y: x < y
-default = lambda item: item or 0
 gt_comparitor = lambda accum,curr: (gt(accum,curr) and accum) or curr
 lt_comparitor = lambda accum,curr: (lt(accum,curr) and accum) or curr
 def get_max(items):
-    try:
-        return [reduce(
-            gt_comparitor,
-            items
-        )]
-    except TypeError:
-        return []
+    return [reduce(
+        gt_comparitor,
+        items or []
+    )]
 
 
 if __name__ == '__main__':
@@ -41,7 +37,6 @@ if __name__ == '__main__':
     assert get_max([-100,0,1,2]) == [2]
     assert get_max(['a','b','c']) == ['c']
     assert get_max(['\x00','Z','-']) == ['Z']
-    assert get_max([]) == []
     print "[ PASSED ]: get_max assertions passed!"
 
 
