@@ -13,9 +13,12 @@ from data import (
 #
 #  Q1: transform the array 'new_releases' of videos
 #  into an array of {id,title} pairs
-#  using the map function OR comprehensions
+#  using the map function
 #
-pairs = []
+create_pairs = lambda obj: {'title':obj['title'],'id':obj['id']}
+pairs = map(create_pairs, new_releases)
+
+pairs = [{'title':obj['title'],'id':obj['id']} for obj in new_releases]
 print pairs
 assert pairs == [{'id': 70111470, 'title': 'Die Hard'},
                  {'id': 654356453, 'title': 'Bad Boys'},
