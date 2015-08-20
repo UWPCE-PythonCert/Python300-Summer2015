@@ -44,4 +44,10 @@ Week 5
 
   `Iterators, Generators <html_slides/03-iterators-decorators.html>`_
 
+Week 8
+=============
+
+.. rst-class:: left
+
+  `Threading and Multiprocessing <html_slides/07-threading-and-multiprocessing.html>`_
 
