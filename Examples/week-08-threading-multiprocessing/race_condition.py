@@ -6,9 +6,7 @@ import time
 x = 0
 def func():
     global x
-    y = x # read
-    y += 1 # read, update
-    x = y # write
+    x += 1
 
 threads = []
 #
