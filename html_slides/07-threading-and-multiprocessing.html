@@ -145,6 +145,14 @@
               <p>Another example using <a href="http://eli.thegreenplace.net/2012/01/16/python-parallelizing-cpu-bound-tasks-with-multiprocessing">prime factors</a></p>
           </p>
       </section>
+
+      <section class="slide">
+        <h2>A better picture</h2>
+        <p>
+              <img src="images/num_integ_c.gif" />
+        </p>
+      </section>
+
       <section class="slide">
           <h2>Parallel execution example</h2>
       <p>
@@ -209,6 +217,7 @@ for i in xrange(3):
             <li>Take the example we've been working with
             <li>Create a new class that subclasses threading.Thread
             <li>Implement the run() method
+            <li>Use the <a href="https://docs.python.org/2/library/threading.html#thread-objects">docs</a> or Google to find examples if confused
             <li>NOTE: the thread creation code must change too:</li>
             <code>thread = threading.Thread(target=func, args=())</code>
           </ol>
@@ -379,6 +388,7 @@ threading.Thread(target=f).start()
 threading.Thread(target=f).start()</code></pre></p>
 <p>See examples/lock/simple_lock.py</p>
       </section>
+<!--
       <section class="slide">
           <h2>Nonblocking locking</h2>
           <p>.acquire() will return True if it successfully acquires a lock
@@ -393,6 +403,7 @@ if lock.acquire(False):
     print "got lock"</pre></code>
 <p>See examples/lock/simple_nonblocking_lock.py</p>
       </section>
+-->
 
       <section class="slide">
           <h2>Race Condition Solution</h2>
